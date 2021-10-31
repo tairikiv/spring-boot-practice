@@ -1,5 +1,6 @@
 package com.example.springbootpractice.services.implementations;
 
+import com.example.springbootpractice.models.City;
 import com.example.springbootpractice.models.Person;
 import com.example.springbootpractice.repositories.PersonRepository;
 import com.example.springbootpractice.services.PersonService;
@@ -18,5 +19,10 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Person> findAllPersons() {
         return personRepository.findAll();
+    }
+
+    @Override
+    public List<Person> findAllPersonsByCity(City city) {
+        return personRepository.findAllByCity(city);
     }
 }

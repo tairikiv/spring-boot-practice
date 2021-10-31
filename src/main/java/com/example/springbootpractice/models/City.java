@@ -5,22 +5,19 @@ import lombok.Data;
 import javax.persistence.*;
 
 /**
- * Person model
+ * City model
  *
  * @author Tairi
  */
 @Data
 @Entity
-public class Person {
+public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String firstName;
-    private String lastName;
-    private int age;
+    private String name;
 
     @OneToOne
-    private City city;
-
+   private Country country;
 }

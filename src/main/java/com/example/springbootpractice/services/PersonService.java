@@ -1,5 +1,6 @@
 package com.example.springbootpractice.services;
 
+import com.example.springbootpractice.models.City;
 import com.example.springbootpractice.models.Person;
 
 import java.util.List;
@@ -16,4 +17,7 @@ public interface PersonService {
      * @return List of persons
      */
     List<Person> findAllPersons();
+
+
+    List<Person> findAllPersonsByCity(City city);
 }
