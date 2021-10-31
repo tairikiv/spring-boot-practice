@@ -18,6 +18,6 @@ public class City {
 
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
    private Country country;
 }
