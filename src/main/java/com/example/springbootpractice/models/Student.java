@@ -6,13 +6,13 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
- * Teacher model
+ * Student model
  *
  * @author Tairi
  */
 @Data
 @Entity
-public class Teacher{
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -26,8 +26,6 @@ public class Teacher{
     @Enumerated(EnumType.STRING)
     private School school;
 
-    @Enumerated(EnumType.STRING)
-    private Specialization specialization;
 
     private LocalDate joinDate;
 }

@@ -1,10 +1,8 @@
 package com.example.springbootpractice.configuration;
 
-import com.example.springbootpractice.models.City;
-import com.example.springbootpractice.models.School;
-import com.example.springbootpractice.models.Specialization;
-import com.example.springbootpractice.models.Teacher;
+import com.example.springbootpractice.models.*;
 import com.example.springbootpractice.services.CityService;
+import com.example.springbootpractice.services.StudentService;
 import com.example.springbootpractice.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,11 +21,14 @@ public class DataInit {
     private TeacherService teacherService;
     @Autowired
     private CityService cityService;
+    @Autowired
+    private StudentService studentService;
 
     @PostConstruct
     public void init(){
         initCity();
         initTeacher();
+        initStudent();
     }
 
     private void initCity(){
@@ -53,6 +54,18 @@ public class DataInit {
             cityService.findCityByName("Tallinn").ifPresent(teacher::setCity);
             teacher.setJoinDate(LocalDate.of(2021, 10, 30));
             teacherService.crateTeacher(teacher);
+        }
+    }
+    private void initStudent(){
+        if(studentService.findAllStudents().isEmpty()){
+            Student student = new Student();
+            student.setFirstName("Mari");
+            student.setLastName("Rebane");
+            student.setAge(20);
+            student.setSchool(School.TTU);
+            cityService.findCityByName("Tartu").ifPresent(student::setCity);
+            student.setJoinDate(LocalDate.of(2021, 11, 8));
+            studentService.crateStudent(student);
         }
     }
 }
