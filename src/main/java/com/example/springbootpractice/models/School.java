@@ -8,5 +8,6 @@ package com.example.springbootpractice.models;
 public enum School {
     TALLINN_UNIVERSITY,
     TARTU_UNIVERSITY,
-    TTU
+    TTU,
+    SDA_ACADEMY
 }

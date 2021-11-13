@@ -28,4 +28,5 @@ public class TeacherController {
         model.addAttribute("teachers", teachers );
         return "teacher/list-teachers";
     }
+
 }
