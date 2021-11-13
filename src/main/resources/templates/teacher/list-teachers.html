@@ -33,6 +33,7 @@
     <div class="p-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-5">
             <h4 class="display-5 fw-bold">Teachers list</h4>
+            <a href="/teacher/add/" class="btn btn-primary">Add new teacher</a>
             <div class="container-fluid" th:switch="${teachers.size() > 0}">
                 <h3 th:case="false">No teachers available!</h3>
                 <table th:case="true" class="table">
