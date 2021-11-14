@@ -86,20 +86,47 @@ public class TeacherController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateTeacher(@PathVariable("id") Long id,  Teacher teacher, RedirectAttributes redirectAttributes){
+    public String updateTeacher(@PathVariable("id") Long id,  Teacher teacher, RedirectAttributes redirectAttributes) {
         try {
             teacher.setId(id);
             teacherService.updateTeacher(teacher);
             redirectAttributes.addFlashAttribute("messageType", "success");
             redirectAttributes.addFlashAttribute("message", "A teacher has been updated successfully!");
             return "redirect:/teacher";
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
             redirectAttributes.addFlashAttribute("teacher", teacher);
             redirectAttributes.addFlashAttribute("messageType", "error");
             redirectAttributes.addFlashAttribute("message", "Error in updating a teacher!");
             return "redirect:/teacher/update";
+        }
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteTeacher(@PathVariable("id") Long id, RedirectAttributes redirectAttributes ){
+        try{
+            teacherService.deleteTeacherById(id);
+            redirectAttributes.addFlashAttribute("messageType", "success");
+            redirectAttributes.addFlashAttribute("message", "A teacher has been deleted successfully!");
+            return "redirect:/teacher";
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+            redirectAttributes.addFlashAttribute("messageType", "error");
+            redirectAttributes.addFlashAttribute("message", "Error in deleting a teacher!");
+            return "redirect:/teacher";
+        }
+    }
+    @GetMapping("/restore/{id}")
+    public String restoreTeacher(@PathVariable("id") Long id, RedirectAttributes redirectAttributes ){
+        try{
+            teacherService.restoreTeacherById(id);
+            redirectAttributes.addFlashAttribute("messageType", "success");
+            redirectAttributes.addFlashAttribute("message", "A teacher has been restored successfully!");
+            return "redirect:/teacher";
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+            redirectAttributes.addFlashAttribute("messageType", "error");
+            redirectAttributes.addFlashAttribute("message", "Error in restoring a teacher!");
+            return "redirect:/teacher";
         }
     }
 }

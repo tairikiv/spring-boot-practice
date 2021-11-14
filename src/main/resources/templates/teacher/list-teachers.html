@@ -67,7 +67,9 @@
                         <td th:text="${teacher.city.name}"></td>
                         <td th:text="${teacher.joinDate}"></td>
                         <td>
-                            <a th:href="@{/teacher/update/{id}(id=${teacher.id})}" class="btn btn-primary">Update</a>
+                            <a th:if="${teacher.active == true}" th:href="@{/teacher/update/{id}(id=${teacher.id})}" class="btn btn-primary">Update</a>
+                            <a th:if="${teacher.active == true}" th:href="@{/teacher/delete/{id}(id=${teacher.id})}" class="btn btn-danger">Delete</a>
+                            <a th:if="${teacher.active == false}" th:href="@{/teacher/restore/{id}(id=${teacher.id})}" class="btn btn-warning">Restore</a>
                         </td>
                     </tr>
                     </tbody>

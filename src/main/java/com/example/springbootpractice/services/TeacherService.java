@@ -40,4 +40,16 @@ public interface TeacherService {
      * @param teacher Teacher
      */
     void updateTeacher(Teacher teacher);
+
+    /**
+     * To delete a teacher by Id
+     * @param id Id of the teacher
+     */
+    void deleteTeacherById(Long id);
+
+    /**
+     * To restore teacher by Id
+     * @param id Id of the teacher
+     */
+    void restoreTeacherById(Long id);
 }

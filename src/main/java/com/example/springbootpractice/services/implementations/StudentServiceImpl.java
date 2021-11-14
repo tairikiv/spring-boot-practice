@@ -28,6 +28,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void crateStudent(Student student) {
+        student.setActive(true);
         studentRepository.save(student);
 
     }

@@ -28,4 +28,6 @@ public class Student {
 
 
     private LocalDate joinDate;
+
+    private boolean isActive;
 }
