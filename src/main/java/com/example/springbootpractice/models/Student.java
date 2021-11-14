@@ -1,6 +1,7 @@
 package com.example.springbootpractice.models;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,6 +28,7 @@ public class Student {
     private School school;
 
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate joinDate;
 
     private boolean isActive;

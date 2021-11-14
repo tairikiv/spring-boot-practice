@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add new teacher</title>
+    <title>Add new student</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
@@ -32,11 +32,11 @@
     <br><br>
     <div class="p-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-5">
-            <h4 class="display-5 fw-bold">Add teacher</h4>
+            <h4 class="display-5 fw-bold">Add student</h4>
             <div th:if="${messageType} == 'error'" class="alert alert-danger" role="alert" >
                 <span th:text="${message}"></span>
             </div>
-            <form action="#" th:action="@{/teacher/add}" th:object="${teacher}" method="post">
+            <form action="#" th:action="@{/student/add}" th:object="${student}" method="post">
                 <div class="form-group">
                     <label for="firstName">First Name</label>
                     <input type="text" th:field="*{firstName}" id="firstName" class="form-control" required>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
-                    <input type="number" th:field="*{age}" id="age" class="form-control" min="20" required>
+                    <input type="number" th:field="*{age}" id="age" class="form-control" min="10" required>
                 </div>
                 <div class="form-group">
                     <label for="city">City</label>
@@ -62,12 +62,6 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="specialization">Specialization</label>
-                    <select class="form-select" th:field="*{specialization}"  id="specialization" required>
-                        <option th:each="specialization: ${specializations}" th:value="${specialization}" th:text="${specialization.name}"></option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label class="font-weight-bold" for="joinDate">Join date</label>
                     <input type="date" class="form-control" id="joinDate" th:field="*{joinDate}">
                 </div>
@@ -76,7 +70,7 @@
                 </div>
                 <br/><br/>
                 <button type="submit" class="btn btn-success">Add</button>
-                <a href="/teacher/" class="btn btn-primary">Cancel</a>
+                <a href="/student/" class="btn btn-primary">Cancel</a>
             </form>
         </div>
     </div>

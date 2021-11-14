@@ -34,6 +34,15 @@
     <div class="p-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-5">
             <h4 class="display-5 fw-bold">Students list</h4>
+            <a href="/student/add/" class="btn btn-primary">Add new student</a>
+            <br><br>
+            <div th:if="${messageType} == 'success'" class="alert alert-success" role="alert" >
+                <span th:text="${message}"></span>
+            </div>
+            <div th:if="${messageType} == 'error'" class="alert alert-danger" role="alert" >
+                <span th:text="${message}"></span>
+            </div>
+            
             <div class="container-fluid" th:switch="${students.size() > 0}">
                 <h3 th:case="false">No students available!</h3>
                 <table th:case="true" class="table">
@@ -57,6 +66,11 @@
                         <td th:text="${student.school}"></td>
                         <td th:text="${student.city.name}"></td>
                         <td th:text="${student.joinDate}"></td>
+                        <td>
+                            <a th:if="${student.active == true}" th:href="@{/student/update/{id}(id=${student.id})}" class="btn btn-primary">Update</a>
+                            <a th:if="${student.active == true}" th:href="@{/student/delete/{id}(id=${student.id})}" class="btn btn-danger">Delete</a>
+                            <a th:if="${student.active == false}" th:href="@{/student/restore/{id}(id=${student.id})}" class="btn btn-warning">Restore</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
