@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -29,5 +30,18 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public void crateTeacher(Teacher teacher) {
         teacherRepository.save(teacher);
+    }
+
+    @Override
+    public Optional<Teacher> findTeacherById(Long id) {
+        return teacherRepository.findById(id);
+    }
+
+    @Override
+    public void updateTeacher(Teacher teacher) {
+        if(teacher == null || teacherRepository.existsById(teacher.getId())) {
+            throw new RuntimeException("Teacher not found!");
+        }
+        teacherRepository.saveAndFlush(teacher);
     }
 }

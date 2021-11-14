@@ -34,6 +34,14 @@
         <div class="container-fluid py-5">
             <h4 class="display-5 fw-bold">Teachers list</h4>
             <a href="/teacher/add/" class="btn btn-primary">Add new teacher</a>
+            <br><br>
+            <div th:if="${messageType} == 'success'" class="alert alert-success" role="alert" >
+                <span th:text="${message}"></span>
+            </div>
+            <div th:if="${messageType} == 'error'" class="alert alert-danger" role="alert" >
+                <span th:text="${message}"></span>
+            </div>
+
             <div class="container-fluid" th:switch="${teachers.size() > 0}">
                 <h3 th:case="false">No teachers available!</h3>
                 <table th:case="true" class="table">
@@ -46,6 +54,7 @@
                         <th scope="col">Specialization</th>
                         <th scope="col">City</th>
                         <th scope="col">Join date</th>
+                        <th scope="col">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -57,6 +66,9 @@
                         <td th:text="${teacher.specialization}"></td>
                         <td th:text="${teacher.city.name}"></td>
                         <td th:text="${teacher.joinDate}"></td>
+                        <td>
+                            <a th:href="@{/teacher/update/{id}(id=${teacher.id})}" class="btn btn-primary">Update</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
