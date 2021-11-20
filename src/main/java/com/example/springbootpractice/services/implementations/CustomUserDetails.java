@@ -1,6 +1,6 @@
 package com.example.springbootpractice.services.implementations;
 
-import com.example.springbootpractice.models.User;
+import com.example.springbootpractice.models.Users;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,22 +18,22 @@ import java.util.Collections;
 @Data
 @AllArgsConstructor
 public class CustomUserDetails implements UserDetails {
-    private User user;
+    private Users users;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getAuthority().getName());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(users.getAuthority().getName());
         return Collections.singletonList(authority);
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return users.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return users.getUsername();
     }
 
     @Override

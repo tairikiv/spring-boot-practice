@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Add new student</title>
@@ -14,16 +14,22 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" sec:authorize="isAuthenticated()">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/teacher/">Teacher</a>
+                        <a class="nav-link" href="/teacher/">Teacher</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/student/">Student</a>
+                        <a class="nav-link active" href="/student/">Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/">User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout/">Logout</a>
                     </li>
                 </ul>
             </div>

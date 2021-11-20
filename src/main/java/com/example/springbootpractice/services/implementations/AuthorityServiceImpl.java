@@ -23,7 +23,9 @@ public class AuthorityServiceImpl implements AuthorityService {
 
     @Override
     public void createAuthority(Authority authority) {
-        authorityRepository.save(authority);
+        if(!findAuthorityByName(authority.getName()).isPresent()) {
+            authorityRepository.save(authority);
+        }
     }
 
     @Override
