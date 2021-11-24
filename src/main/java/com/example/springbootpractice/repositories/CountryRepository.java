@@ -1,6 +1,5 @@
 package com.example.springbootpractice.repositories;
 
-import com.example.springbootpractice.models.Country;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

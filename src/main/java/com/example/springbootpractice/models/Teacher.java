@@ -24,6 +24,7 @@ public class Teacher{
 
     @OneToOne
     private City city;
+
     @Enumerated(EnumType.STRING)
     private School school;
 
