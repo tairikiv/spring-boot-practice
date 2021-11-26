@@ -1,5 +1,6 @@
 package com.example.springbootpractice.services.implementations;
 
+import com.example.springbootpractice.models.Teacher;
 import com.example.springbootpractice.models.Users;
 import com.example.springbootpractice.repositories.UsersRepository;
 import com.example.springbootpractice.services.UsersService;
@@ -27,6 +28,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public void createUser(Users users) {
+        users.setActive(true);
         users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
         usersRepository.save(users);
     }
@@ -44,5 +46,46 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public List<Users> getAllUsers() {
         return usersRepository.findAll();
+    }
+
+    @Override
+    public Optional<Users> findUsersById(Long id) {
+        return usersRepository.findById(id);
+    }
+
+    @Override
+    public void updateUsers(Users users) {
+        if(users == null || !usersRepository.existsById(users.getId())) {
+            throw new RuntimeException("User not found!");
+        }
+        usersRepository.saveAndFlush(users);
+    }
+
+    @Override
+    public void deleteUsersById(Long id) {
+        Optional<Users> usersOptional = findUsersById(id);
+
+        if(!usersOptional.isPresent()) {
+            throw new RuntimeException("User not found!");
+        }
+        else{
+            Users users = usersOptional.get();
+            users.setActive(false);
+            usersRepository.saveAndFlush(users);
+        }
+    }
+
+    @Override
+    public void restoreUsersById(Long id) {
+        Optional<Users> usersOptional = findUsersById(id);
+
+        if(!usersOptional.isPresent()) {
+            throw new RuntimeException("User not found!");
+        }
+        else{
+            Users users = usersOptional.get();
+            users.setActive(true);
+            usersRepository.saveAndFlush(users);
+        }
     }
 }

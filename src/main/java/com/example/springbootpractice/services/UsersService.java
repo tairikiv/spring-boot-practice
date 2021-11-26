@@ -1,6 +1,7 @@
 package com.example.springbootpractice.services;
 
 import com.example.springbootpractice.models.Users;
+import com.example.springbootpractice.models.Users;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,4 +38,24 @@ public interface UsersService {
      * @return List of User
      */
     List<Users> getAllUsers();
+
+    Optional<Users> findUsersById(Long id);
+
+    /**
+     * To update a users
+     * @param users Users
+     */
+    void updateUsers(Users users);
+
+    /**
+     * To delete a users by Id
+     * @param id Id of the users
+     */
+    void deleteUsersById(Long id);
+
+    /**
+     * To restore users by Id
+     * @param id Id of the users
+     */
+    void restoreUsersById(Long id);
 }

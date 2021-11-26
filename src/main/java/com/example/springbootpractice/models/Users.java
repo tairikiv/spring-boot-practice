@@ -21,4 +21,6 @@ public class Users {
 
     @OneToOne(cascade = CascadeType.MERGE)
     private Authority authority;
+
+    private boolean isActive;
 }

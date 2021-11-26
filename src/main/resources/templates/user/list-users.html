@@ -25,6 +25,14 @@
                     <th scope="row" th:text="${user.id}"></th>
                     <td th:text="${user.username}"></td>
                     <td th:text="${user.authority.name}"></td>
+                    <td>
+                        <a th:if="${user.active == true}" th:href="@{/user/update/{id}(id=${user.id})}"
+                           class="btn btn-primary">Update</a>
+                        <a th:if="${user.active == true}" th:href="@{/user/delete/{id}(id=${user.id})}"
+                           class="btn btn-danger">Delete</a>
+                        <a th:if="${user.active == false}" th:href="@{/user/restore/{id}(id=${user.id})}"
+                           class="btn btn-warning">Restore</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
