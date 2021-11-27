@@ -1,5 +1,6 @@
 package com.example.springbootpractice.models;
 
+import com.example.springbootpractice.utils.validation.ValidCity;
 import lombok.Data;
 
 import javax.persistence.*;

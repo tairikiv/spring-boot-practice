@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -48,13 +49,13 @@ public class TeacherController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addTeacher(@RequestBody Teacher teacher){
+    public ResponseEntity<?> addTeacher(@RequestBody @Valid Teacher teacher){
             teacherService.crateTeacher(teacher);
             return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Teacher> updateTeacher(@RequestBody Teacher teacher) {
+    public ResponseEntity<Teacher> updateTeacher(@RequestBody @Valid Teacher teacher) {
         teacherService.updateTeacher(teacher);
 
         HttpHeaders headers = new HttpHeaders();
