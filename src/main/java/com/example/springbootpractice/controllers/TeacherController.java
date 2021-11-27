@@ -1,5 +1,6 @@
 package com.example.springbootpractice.controllers;
 
+import com.example.springbootpractice.exceptions.TeacherNotFoundException;
 import com.example.springbootpractice.models.Teacher;
 import com.example.springbootpractice.services.CityService;
 import com.example.springbootpractice.services.TeacherService;
@@ -36,9 +37,14 @@ public class TeacherController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Teacher> getTeacherById(@PathVariable Long id){
+    public ResponseEntity<Teacher> getTeacherById(@PathVariable Long id) throws TeacherNotFoundException {
         Optional<Teacher> teacherOptional = teacherService.findTeacherById(id);
-        return teacherOptional.map(teacher -> new ResponseEntity<>(teacher, HttpStatus.FOUND)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
+        if (!teacherOptional.isPresent()) {
+            throw new TeacherNotFoundException(id);
+        }
+
+        return new ResponseEntity<>(teacherOptional.get(), HttpStatus.FOUND);
     }
 
     @PostMapping
