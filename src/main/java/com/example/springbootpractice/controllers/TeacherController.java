@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -32,6 +33,12 @@ public class TeacherController {
     @GetMapping("")
     public List<Teacher> getAllTeachers(){
         return  teacherService.findAllTeachers();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Teacher> getTeacherById(@PathVariable Long id){
+        Optional<Teacher> teacherOptional = teacherService.findTeacherById(id);
+        return teacherOptional.map(teacher -> new ResponseEntity<>(teacher, HttpStatus.FOUND)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
