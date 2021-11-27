@@ -1,5 +1,6 @@
 package com.example.springbootpractice.handlers;
 
+import com.example.springbootpractice.exceptions.StudentNotFoundException;
 import com.example.springbootpractice.exceptions.TeacherNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -50,5 +51,13 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
         ErrorResponse errorResponse = new ErrorResponse("Validation failed!", details);
         return new ResponseEntity<>(errorResponse,HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(StudentNotFoundException.class)
+    public final ResponseEntity<Object> handleStudentNotFoundException(Exception ex){
+        List<String> details = new ArrayList<>();
+        details.add(ex.getLocalizedMessage());
+        ErrorResponse errorResponse = new ErrorResponse("Request Error!", details);
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

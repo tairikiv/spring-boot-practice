@@ -22,7 +22,7 @@ public class Teacher{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "{messages.constraints.empty-first-name}" )
+    @NotBlank(message = "{messages.constraints.empty-first-name}")
     private String firstName;
 
     @NotBlank(message = "{messages.constraints.empty-last-name}")
